@@ -3,6 +3,7 @@ GravityView Sample Data Importer
 
 Import sample data for the GravityView Preset forms.
 
+* Use "View > New View" and click Start Fresh to create a View for each preset.
 * Activate the plugin
 * Go to the Views > Sample Data Import menu
 * Map existing forms to the View Presets
