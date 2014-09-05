@@ -33,6 +33,7 @@ function gv_sample_data_settings_page() {
     ?>
     <div class="wrap">
         <h2>Import GravityView Data</h2>
+        <h3 class="subsubsub">Map the forms to the View Presets, save the form, then you'll see an Import link next to each preset.</h3>
         <form method="post" action="options.php">
             <?php settings_fields('gv_sample_data_options'); ?>
             <?php
