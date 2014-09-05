@@ -11,7 +11,9 @@ Import sample data for the GravityView Preset forms.
 
 ### Uses Mockaroo.com APIs
 
-Mockaroo allows you to configure sample data. It's great. Here are the current
+Mockaroo allows you to configure sample data. It's great.
+
+We've set up Mockaroo data generators for the different presets. Here are links to the data generators.
 
 * http://www.mockaroo.com/8b3ad4d0 => Issue Tracker
 * http://www.mockaroo.com/1d9905e0 => Website Directory
