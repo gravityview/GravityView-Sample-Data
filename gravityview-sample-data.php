@@ -8,6 +8,15 @@ Author: katzwebservices
 Author URI: http://katz.co
 */
 
+// You can define in wp-config.php
+if( !defined('GV_MOCKAROO_API_KEY') ) {
+
+	// The API key for Mockaroo.com
+	// You MUST enter your API key here!
+	define( 'GV_MOCKAROO_API_KEY', 'ENTER YOUR KEY HERE' );
+
+}
+
 include_once plugin_dir_path( __FILE__ ). 'settings.php';
 
 add_action('plugins_loaded', 'kws_gv_sample_data_run_data_import');
@@ -39,7 +48,12 @@ function gv_sample_data_import( $form_id, $mockaroo_key, $count = 250 ) {
 
 		if( empty( $form ) ) { return; }
 
-		$path = add_query_arg( array( 'count' => (int)$count ), sprintf( 'http://www.mockaroo.com/%s/download', $mockaroo_key ) );
+		$url = sprintf( 'http://www.mockaroo.com/%s/download', $mockaroo_key );
+
+		$path = add_query_arg( array(
+			'count' => (int)$count,
+			'key' 	=> GV_MOCKAROO_API_KEY,
+		), $url );
 
 		$response = wp_remote_get( $path , array(
 			'timeout' => 300
@@ -48,6 +62,12 @@ function gv_sample_data_import( $form_id, $mockaroo_key, $count = 250 ) {
 		$json = wp_remote_retrieve_body( $response );
 
 		$data = json_decode( $json, true );
+
+		if( !empty( $data['error'] ) ) {
+
+			wp_redirect( add_query_arg(array('error' => urlencode( $data['error'] )), remove_query_arg(array('form_id', 'mockaroo_key', 'gv_sample_data_run_import') ) ));
+			exit;
+		}
 
 		// We've got to flatten the array down
 		foreach ( $data as $index => $datem ) {

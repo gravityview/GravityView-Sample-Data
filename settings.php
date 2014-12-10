@@ -22,13 +22,19 @@ function gv_sample_data_settings_page() {
 		return;
 	}
 
-	if( isset( $_GET['success'] ) ) {
-		?>
-	<div class="updated" id="message">
-		<?php echo wpautop(sprintf( '%d entries were successfully added to Form #%d. <a href="%s">View Entries</a>', $_GET['success'], $_GET['form_id'], admin_url('admin.php?page=gf_entries&amp;id='.intval($_GET['form_id']) ) )); ?>
-	</div>
-		<?php
-	}
+  if( isset( $_GET['success'] ) ) {
+    ?>
+  <div class="updated" id="message">
+    <?php echo wpautop(sprintf( '%d entries were successfully added to Form #%d. <a href="%s">View Entries</a>', $_GET['success'], $_GET['form_id'], admin_url('admin.php?page=gf_entries&amp;id='.intval($_GET['form_id']) ) )); ?>
+  </div>
+    <?php
+  } else if( isset( $_GET['error'] ) ) {
+    ?>
+  <div class="error" id="message">
+    <?php echo wpautop(sprintf( 'There was an error connecting to Mockaroo: %s', '<code>'.esc_html( $_GET['error'] ).'</code>' ) ); ?>
+  </div>
+    <?php
+  }
 
     ?>
     <div class="wrap">
