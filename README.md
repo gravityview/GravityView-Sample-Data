@@ -3,6 +3,19 @@ GravityView Sample Data Importer
 
 Import sample data for the GravityView Preset forms.
 
+### First, update your `wp-config.php` file with your Mockaroo.com API key
+
+* Sign up for an account on Mockaroo.com
+* Go to the [API page](http://mockaroo.com/api/docs)
+* Under "Gaining Access", copy the API key they provide
+* Add the following to your `wp-config.php` file, replacing `example123` with your copied API key:  
+```
+define( 'GV_MOCKAROO_API_KEY', 'example123' );
+```
+* Save the `wp-config.php` file
+
+### Once you've added your API key:
+
 * Use "View > New View" and click Start Fresh to create a View for each preset.
 * Activate the plugin
 * Go to the Views > Sample Data Import menu
